@@ -1,0 +1,106 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Task Management Dashboard</h1>
+
+  <!-- Overview Section -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-body text-center">
+          <h6 class="card-title text-muted">Total Tasks</h6>
+          <h2 class="text-primary"><%= @total_tasks %></h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-body text-center">
+          <h6 class="card-title text-muted">Completed Tasks</h6>
+          <h2 class="text-success"><%= @completed_tasks %></h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-body text-center">
+          <h6 class="card-title text-muted">Tasks Remaining</h6>
+          <h2 class="text-danger"><%= @not_completed_tasks %></h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Section - Aligned Left & Small Buttons -->
+  <div class="mb-4">
+    <h5 class="text-muted">Filter Tasks</h5>
+    <div class="btn-group" role="group" aria-label="Filter Tasks">
+      <%= link_to 'All Tasks', tasks_path, class: "btn btn-outline-dark btn-sm" %>
+      <%= link_to 'Open', tasks_path(filter: 'open'), class: "btn btn-outline-primary btn-sm" %>
+      <%= link_to 'Completed', tasks_path(filter: 'completed'), class: "btn btn-outline-success btn-sm" %>
+      <%= link_to 'Overdue', tasks_path(filter: 'overdue'), class: "btn btn-outline-danger btn-sm" %>
+      <%= link_to 'In Progress', tasks_path(filter: 'in_progress'), class: "btn btn-outline-warning btn-sm" %>
+    </div>
+  </div>
+
+  <!-- Tasks Section -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>Upcoming Tasks</h4>
+    <%= link_to "Add New Task", new_task_path, class: "btn btn-dark" %>
+  </div>
+
+  <div class="task-list">
+    <% @tasks.each do |task| %>
+      <div class="task-card">
+        <%= link_to task_path(task), class: "task-content text-decoration- text-dark" do %>
+          <div class="task-content">
+            <h5 class="task-title d-flex align-items-center">
+              <%= task.name %>
+              <% if task.high_priority? %>
+                <span class="ms-2 text-warning" title="High Priority">
+                  <i class="bi bi-star-fill"></i>
+                </span>
+              <% end %>
+            </h5>
+            <p class="text-muted task-desc"><%= task.description %></p>
+            <small class="text-muted">
+              <i class="bi bi-calendar"></i> Deadline: <%= task.deadline.strftime("%b %d, %Y") if task.deadline %>
+            </small>
+          </div>
+
+          <div class="task-actions">
+            <!-- Task Status Badge Logic -->
+            <% if task.status.downcase == "completed" %>
+              <span class="badge bg-success">Completed</span>
+            <% elsif task.deadline.present? && task.deadline < Date.today && task.status.downcase != "completed" %>
+              <span class="badge bg-danger">Overdue</span>
+            <% elsif task.status.downcase == "in_progress" %>
+              <span class="badge bg-warning text-dark">In Progress</span>
+            <% else %>
+              <span class="badge bg-primary">Open</span>
+            <% end %>
+
+            <div class="task-buttons">
+              <%= link_to edit_task_path(task), class: "btn btn-outline-primary btn-sm" do %>
+                <i class="bi bi-pencil"></i>
+              <% end %>
+              <%= button_to task, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger btn-sm" do %>
+                <i class="bi bi-trash"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

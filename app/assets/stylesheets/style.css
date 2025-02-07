@@ -1,0 +1,108 @@
+/* Task List Styling */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Task Card */
+  .task-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #fff;
+    border-radius: 8px;
+    border-left: 4px solid #6c757d; /* Grey border instead of blue */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smoother and more noticeable zoom */
+  }
+  
+  .task-card:hover {
+    transform: scale(1.05); /* Slight zoom effect for task card */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow for more depth */
+  }
+  
+  /* Task Title */
+  .task-title {
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.4s ease; /* Smooth zoom */
+  }
+  
+  .task-title:hover {
+    transform: scale(1.05); /* Zoom effect on hover */
+  }
+  
+  /* Task Description */
+  .task-desc {
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 4px;
+    transition: transform 0.4s ease; /* Smooth zoom */
+  }
+  
+  .task-desc:hover {
+    transform: scale(1.02); /* Slight zoom effect on description */
+  }
+  
+  /* Task Actions Container */
+  .task-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  /* Task Buttons Container */
+  .task-buttons {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+  }
+  
+  /* Buttons (Edit, Delete) */
+  .task-buttons .btn {
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth zoom effect */
+  }
+  
+  .task-buttons .btn:hover {
+    transform: scale(1.05); /* Zoom effect on buttons */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+  }
+  
+  /* Link inside the Task Cards (e.g., Total Tasks, Completed Tasks) */
+  .task-card a {
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.4s ease; /* Smooth color and zoom transition */
+  }
+  
+  .task-card a:hover {
+    color: #007bff; /* Change link color on hover */
+    transform: scale(1.05); /* Smooth zoom effect on link */
+  }
+  
+  /* Hover effect for cards in Overview Section (Total, Completed, Remaining Tasks) */
+  .card:hover {
+    transform: scale(1.05); /* Smooth zoom effect for overview cards */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Hover Effect for Dashboard Buttons */
+  .btn:hover {
+    transform: scale(1.05); /* Smooth zoom effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+  }
+  
+  
+  /* Remove hover effect on links/buttons */
+.card, .btn, .btn-outline-secondary, .btn-outline-primary {
+    transition: none !important;
+    transform: none !important;
+  }
+  
+  /* If you're targeting cards specifically */
+  .card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  

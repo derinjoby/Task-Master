@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4"><%= @task.name %></h1>
+
+  <!-- Navigation Links -->
+  <div class="d-flex justify-content-center mb-4">
+    <%= link_to "Back", tasks_path, class: "btn btn-outline-secondary btn-sm me-2" %>
+    <%= link_to "Edit", edit_task_path(@task), class: "btn btn-outline-primary btn-sm" %>
+  </div>
+
+  <!-- Task Details -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Description:</h5>
+      <p><%= @task.description %></p>
+
+      <h5 class="card-title">Priority:</h5>
+      <p>
+        <% if @task.high_priority? %>
+          <span class="badge bg-warning text-dark">High Priority</span>
+        <% else %>
+          <span class="badge bg-success">Normal</span>
+        <% end %>
+      </p>
+
+      <h5 class="card-title">Deadline:</h5>
+      <p><%= @task.deadline.strftime("%b %d, %Y") if @task.deadline %></p>
+
+      <h5 class="card-title">Status:</h5>
+      <p>
+        <% if @task.status.downcase == "completed" %>
+          <span class="badge bg-success">Completed</span>
+        <% elsif @task.deadline.present? && @task.deadline < Date.today && @task.status.downcase != "completed" %>
+          <span class="badge bg-danger">Overdue</span>
+        <% elsif @task.status.downcase == "in_progress" %>
+          <span class="badge bg-warning text-dark">In Progress</span>
+        <% else %>
+          <span class="badge bg-primary">Open</span>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+

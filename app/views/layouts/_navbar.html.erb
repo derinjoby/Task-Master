@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fs-4 text-dark" href="<%= root_path %>" style="font-family: 'Lora', serif; font-weight: bold; letter-spacing: 1px;">
+      <i class="bi bi-clipboard-check"></i> TaskMaster
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="<%= root_path %>">
+            <i class="bi bi-house-door"></i> Dashboard
+          </a>
+        </li>
+        
+        <!-- Search Bar Section -->
+        <li class="nav-item ms-3">
+          <form class="d-flex" action="<%= tasks_path %>" method="get">
+            <div class="input-group">
+              <input id="search-input" class="form-control rounded-pill border-0 px-3" type="search" name="search" placeholder="Search tasks..." aria-label="Search" style="max-width: 180px;">
+              <button class="btn btn-outline-primary rounded-pill" type="submit">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </form>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="bi bi-gear"></i> Settings
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+

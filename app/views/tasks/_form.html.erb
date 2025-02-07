@@ -1,0 +1,61 @@
+<%= form_with model: task, class: "bg-white p-4 rounded shadow-sm d-flex justify-content-center" do |form| %>
+    <div class="w-100" style="max-width: 600px;">
+      <h3 class="text-center mb-4"><%= task.new_record? ? "Create New Task" : "Edit Task" %></h3>
+  
+      <!-- Task Name -->
+      <div class="form-group mb-3">
+        <%= form.label :name, class: "form-label text-center" %>
+        <%= form.text_field :name, class: "form-control mx-auto", placeholder: "Task Name", style: "max-width: 100%;" %>
+  
+        <% if @task.errors[:name].any? %>
+          <div class="text-danger" style="font-size: 12px;">
+            <%= @task.errors[:name].first %>
+          </div>
+        <% end %>
+      </div>
+  
+      <!-- Task Description -->
+      <div class="form-group mb-3">
+        <%= form.label :description, class: "form-label text-center" %>
+        <%= form.text_area :description, class: "form-control mx-auto", placeholder: "Task Description", maxlength: 250, rows: 3, style: "max-width: 100%;" %>
+  
+        <% if @task.errors[:description].any? %>
+          <div class="text-danger" style="font-size: 12px;">
+            <%= @task.errors[:description].first %>
+          </div>
+        <% end %>
+      </div>
+  
+      <!-- Deadline -->
+      <div class="form-group mb-3">
+        <%= form.label :deadline, class: "form-label text-center" %>
+        <%= form.date_field :deadline, class: "form-control mx-auto", min: Date.today.strftime('%Y-%m-%d'), style: "max-width: 100%;" %>
+  
+        <% if @task.errors[:deadline].any? %>
+          <div class="text-danger" style="font-size: 12px;">
+            <%= @task.errors[:deadline].first %>
+          </div>
+        <% end %>
+      </div>
+  
+      <!-- Task Status -->
+      <div class="form-group mb-3">
+        <%= form.label :status, class: "form-label text-center" %>
+        <%= form.select :status, Task.statuses.keys.map { |status| [status.humanize, status] }, { include_blank: false }, class: "form-select mx-auto", style: "max-width: 100%;" %>
+      </div>
+  
+      <!-- Priority Toggle -->
+      <div class="form-group mb-4 d-flex align-items-center justify-content-center">
+        <%= form.check_box :high_priority, class: "form-check-input", id: "priorityToggle" %>
+        <label class="form-check-label ms-2" for="priorityToggle">Set as High Priority ⭐</label>
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="form-group text-center">
+        <%= form.submit task.new_record? ? "Create Task" : "Update Task", class: "btn btn-dark btn-lg w-100" %>
+      </div>
+    </div>
+  <% end %>
+  
+  
+  
