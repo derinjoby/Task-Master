@@ -37,9 +37,22 @@
           <span class="badge bg-primary">Open</span>
         <% end %>
       </p>
+
+      <!-- Assigned User -->
+      <h5 class="card-title">Assigned To:</h5>
+      <p>
+        <% if @task.assigned_user %>
+          <span class="badge bg-info text-dark"><%= @task.assigned_user.email %></span>
+        <% else %>
+          <span class="text-muted">Not assigned</span>
+        <% end %>
+      </p>
+      
     </div>
   </div>
 </div>
+
+
 
 
 

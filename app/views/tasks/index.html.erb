@@ -60,10 +60,18 @@
                 </span>
               <% end %>
             </h5>
-            <p class="text-muted task-desc"><%= task.description %></p>
             <small class="text-muted">
               <i class="bi bi-calendar"></i> Deadline: <%= task.deadline.strftime("%b %d, %Y") if task.deadline %>
             </small>
+            
+            <!-- Assigned User -->
+            <div class="mt-2">
+              <% if task.assigned_user %>
+                <span class="badge bg-info text-dark"><%= task.assigned_user.email %></span>
+              <% else %>
+                <span class="text-muted">Not assigned</span>
+              <% end %>
+            </div>
           </div>
 
           <div class="task-actions">
@@ -91,7 +99,29 @@
       <% end %>
     <% end %>
   </div>
+
+  <!-- Sidebar for Top 3 News -->
+  <div class="sidebar mt-4">
+    <h5 class="text-center">Top 3 News</h5>
+    <ul class="list-group">
+      <% @articles["results"].first(3).each do |article| %>
+        <li class="list-group-item">
+          <%= link_to article["title"], article["url"], target: "_blank", class: "text-decoration-none" %>
+        </li>
+      <% end %>
+    </ul>
+
+    <!-- Read News Button - Positioned Below Top 3 News -->
+    <div class="text-center mt-3">
+      <%= link_to 'Read News', show_articles_tasks_path, class: 'btn btn-outline-primary btn-sm' %>
+    </div>
+  </div>
+
 </div>
+
+
+
+
 
 
 

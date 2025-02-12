@@ -1,5 +1,12 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+
+  def show_articles
+    @articles = SpaceNewsService.fetch_articles['results']
+  end
+
+  
   def index
     @tasks=Task.order(created_at: :desc)
     @upcoming_tasks=Task.where("deadline >= ?",Date.today).order(deadline: :asc).limit(3)
@@ -13,6 +20,19 @@ class TasksController < ApplicationController
       # If no search term, just show all tasks
       @tasks = Task.all
     end
+
+    respond_to do |format|
+      format.html # Render HTML for web views
+      format.json { render json: @tasks }
+    end
+
+    @tasks = Task.all
+    @articles = SpaceNewsService.fetch_articles
+
+    
+
+
+    
 
     
     
@@ -48,6 +68,11 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @task }
+    end
+
   end
 
   def new
@@ -57,11 +82,24 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    if @task.save
-      redirect_to @task
-    else
-      render :new, status: :unprocessable_entity
+
+    if params[:file].present?
+      google_drive = GoogleDriveService.new(current_user)
+      google_drive.upload_file(params[:file])
     end
+
+    @task.assigned_user_id = current_user.id  # Assign creator
+    if @task.save
+      redirect_to @task, notice: 'Task was successfully created.'
+    else
+      render :new
+    end
+
+    
+
+
+
+    
   end
 
   def edit
@@ -91,7 +129,7 @@ class TasksController < ApplicationController
 
 
     def task_params
-      params.expect(task: [ :name,:deadline,:description,:status,:high_priority])
+      params.expect(task: [ :name,:deadline,:description,:status,:high_priority, :assigned_user_id])
     end
       
   end

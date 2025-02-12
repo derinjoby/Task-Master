@@ -1,0 +1,56 @@
+<body class="login">
+  <div class="navbar">
+    <a href="/" class="navbar-brand text-white">MyApp</a>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-start bg-light" style="min-height: 100vh; padding-top: 20px;"> <!-- Adjust padding-top here to push up -->
+    <div class="card shadow-lg p-4 border-0 rounded-4" style="width: 400px; background: #ffffff;">
+      <div class="text-center mb-3">
+        <i class="bi bi-person-circle text-primary" style="font-size: 3rem;"></i>
+        <h3 class="fw-bold text-dark">Welcome </h3>
+        <p class="text-muted">Sign in to continue</p>
+      </div>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-group mb-3">
+          <%= f.label :email, "Email Address", class: "form-label fw-bold text-dark" %>
+          <div class="input-group">
+            <span class="input-group-text bg-light"><i class="bi bi-envelope"></i></span>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "your@email.com" %>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= f.label :password, "Password", class: "form-label fw-bold text-dark" %>
+          <div class="input-group">
+            <span class="input-group-text bg-light"><i class="bi bi-lock"></i></span>
+            <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "••••••••" %>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <% if devise_mapping.rememberable? %>
+            <div class="form-check">
+              <%= f.check_box :remember_me, class: "form-check-input" %>
+              <%= f.label :remember_me, "Remember Me", class: "form-check-label text-muted" %>
+            </div>
+          <% end %>
+
+          <%= link_to "Forgot Password?", new_password_path(resource_name), class: "text-decoration-none text-primary" %>
+        </div>
+
+        <div class="d-grid">
+          <%= f.submit "Log in", class: "btn btn-primary btn-lg shadow-sm fw-bold" %>
+        </div>
+      <% end %>
+
+      <div class="text-center mt-3">
+        <p class="text-muted">Don't have an account? <%= link_to "Sign Up", new_registration_path(resource_name), class: "text-primary fw-bold" %></p>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+

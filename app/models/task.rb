@@ -8,6 +8,11 @@ class Task < ApplicationRecord
 
     validate :deadline_must_be_in_the_future
 
+    belongs_to :creator, class_name: "User", foreign_key: "user_id", optional: true
+    belongs_to :assigned_user, class_name: "User", foreign_key: "assigned_user_id", optional: true
+    
+    
+
     private
 
     def deadline_must_be_in_the_future

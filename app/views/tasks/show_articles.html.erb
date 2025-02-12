@@ -1,0 +1,11 @@
+<h1>Spaceflight News</h1>
+
+<% @articles.each do |article| %>
+  <div class="article">
+    <h2><%= article['title'] %></h2>
+    <p><%= article['summary'] %></p>
+    <p><a href="<%= article['url'] %>" target="_blank">Read more</a></p>
+    <img src="<%= article['image_url'] %>" alt="<%= article['title'] %>">
+    <hr>
+  </div>
+<% end %>

@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users
+  
+
+
+  
+  
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Health check endpoint
@@ -8,7 +16,14 @@ Rails.application.routes.draw do
   root "tasks#index"
 
  
-  resources :tasks
+  resources :tasks do
+    get 'show_articles', on: :collection
+  end
+
+  get '/auth/google_oauth2/callback', to: 'sessions#google_auth'
+
+  
+
 
   # Render dynamic PWA files from app/views/pwa/*
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
