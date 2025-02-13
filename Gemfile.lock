@@ -475,6 +475,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
+  net-smtp (~> 0.5.0)
   omniauth-google-oauth2
   pg
   propshaft

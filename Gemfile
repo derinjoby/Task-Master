@@ -70,5 +70,8 @@ gem 'google-api-client', '~> 0.53'
 gem 'omniauth-google-oauth2'
 gem 'pg', group: :production
 
+gem 'net-smtp', '~> 0.5.0'
+
+
 
 
