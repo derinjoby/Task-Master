@@ -467,6 +467,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   brakeman
+  bundler (= 2.6.3)
   capybara
   debug
   devise (~> 4.9)
