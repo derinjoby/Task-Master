@@ -68,7 +68,6 @@ gem "httparty", "~> 0.22.0"
 
 gem 'google-api-client', '~> 0.53'
 gem 'omniauth-google-oauth2'
-gem "pg", "~> 1.1"
 
 gem 'net-smtp', '~> 0.5.0'
 gem 'bundler', '2.6.3'
