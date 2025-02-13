@@ -22,6 +22,9 @@ Rails.application.routes.draw do
 
   get '/auth/google_oauth2/callback', to: 'sessions#google_auth'
 
+  get '/favicon.ico', to: redirect('/path/to/your/favicon.ico')
+
+
   
 
 

@@ -7,4 +7,4 @@ bundle exec rails assets:precompile
 bundle exec rails assets:clean
 
 # Uncomment this line if using a Free Render instance
-# bundle exec rails db:migrate
+bundle exec rails db:migrate
