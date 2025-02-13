@@ -71,6 +71,7 @@ gem 'omniauth-google-oauth2'
 
 gem 'net-smtp', '~> 0.5.0'
 gem 'bundler', '2.6.3'
+gem 'dotenv-rails', groups: [:development, :test, :production]
 
 
 
