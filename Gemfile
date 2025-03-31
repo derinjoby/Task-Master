@@ -64,7 +64,7 @@ end
 
 gem "devise", "~> 4.9"
 
-gem "httparty", "~> 0.22.0"
+gem "httparty", "~> 0.23.1"
 
 gem 'google-api-client', '~> 0.53'
 gem 'omniauth-google-oauth2'
